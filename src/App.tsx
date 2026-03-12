@@ -24,6 +24,51 @@ function App() {
     return accumulator + cartItem.quantity;
   }, 0);
 
+  const addToCart = (product: Product) => {
+    setCart((currentCart) => {
+      const existingCartItem = currentCart.find(
+        (cartItem) => cartItem.product.id === product.id,
+      );
+
+      if (existingCartItem) {
+        return currentCart.map((cartItem) =>
+          cartItem.product.id === product.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem,
+        );
+      }
+
+      return [...currentCart, { product, quantity: 1 }];
+    });
+  };
+
+  const incrementQuantity = (productId: string) => {
+    setCart((currentCart) =>
+      currentCart.map((cartItem) =>
+        cartItem.product.id === productId
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem,
+      ),
+    );
+  };
+
+  const decrementQuantity = (productId: string) => {
+    setCart((currentCart) =>
+      currentCart
+        .map((cartItem) =>
+          cartItem.product.id === productId
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem,
+        )
+        .filter((cartItem) => cartItem.quantity > 0),
+    );
+  };
+
+  const getProductQuantity = (productId: string) => {
+    const cartItem = cart.find((item) => item.product.id === productId);
+    return cartItem ? cartItem.quantity : 0;
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
