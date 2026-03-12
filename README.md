@@ -14,7 +14,7 @@ Small React + TypeScript app that lets you browse refurbished computers, filter 
 ## Demo Video
 
 Google Drive link:  
-**[Insert video link here]**
+**[Demo Video](https://drive.google.com/file/d/1IUbAI9Z7cAc3FKg6dLwxM1K9YbAHglPC/view?usp=sharing)**
 
 ## Notes
 
