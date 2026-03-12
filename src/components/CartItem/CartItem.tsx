@@ -19,25 +19,23 @@ export const CartItem = ({
 
   return (
     <div className="cart-item">
-      <div className="cart-item__details">
+      <div className="cart-item__top-row">
         <div className="cart-item__name">{product.name}</div>
-        <div className="cart-item__pricing">
-          <span className="cart-item__unit-price">
-            ${product.price.toFixed(2)}
-          </span>
-          <span className="cart-item__pricing-separator">×</span>
-          <span className="cart-item__quantity-text">{quantity}</span>
-          <span className="cart-item__pricing-separator">=</span>
-          <span className="cart-item__line-total">${lineTotal.toFixed(2)}</span>
-        </div>
+        <div className="cart-item__line-total">${lineTotal.toFixed(2)}</div>
       </div>
 
-      <div className="cart-item__actions">
-        <QuantitySelector
-          quantity={quantity}
-          onIncrement={onIncrement}
-          onDecrement={onDecrement}
-        />
+      <div className="cart-item__bottom-row">
+        <div className="cart-item__unit-price">
+          ${product.price.toFixed(2)} each
+        </div>
+
+        <div className="cart-item__actions">
+          <QuantitySelector
+            quantity={quantity}
+            onIncrement={onIncrement}
+            onDecrement={onDecrement}
+          />
+        </div>
       </div>
     </div>
   );

@@ -50,11 +50,13 @@ export const CartDrawer = ({
             <div className="cart-drawer__placeholder">Your cart is empty</div>
           ) : (
             cart.map((cartItem) => (
-              <CartItem
-                cartItem={cartItem}
-                onIncrement={() => incrementQuantity(cartItem.product.id)}
-                onDecrement={() => decrementQuantity(cartItem.product.id)}
-              />
+              <div key={cartItem.product.id} className="cart-drawer__items">
+                <CartItem
+                  cartItem={cartItem}
+                  onIncrement={() => incrementQuantity(cartItem.product.id)}
+                  onDecrement={() => decrementQuantity(cartItem.product.id)}
+                />
+              </div>
             ))
           )}
         </div>
