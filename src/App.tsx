@@ -1,16 +1,29 @@
 import { useEffect, useState } from "react";
-import type { CartItem } from "./types/cart";
+import type { Cart } from "./types/cart";
 import type { Product } from "./types/product";
 
 import "./App.css";
 
 const PRODUCTS_URL =
   "https://s3.us-east-1.amazonaws.com/assets.spotandtango/products.json";
+const ALL_FILTER = "All";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [selectedFilter, setSelectedFilter] = useState(ALL_FILTER);
+  const [cart, setCart] = useState<Cart>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const filteredProducts =
+    selectedFilter === ALL_FILTER
+      ? products
+      : products.filter((product) => product.group === selectedFilter);
+  const cartItemCount = cart.reduce((accumulator, cartItem) => {
+    return accumulator + cartItem.quantity;
+  }, 0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,7 +58,7 @@ function App() {
         {!isLoading && error && <>Error: {error}</>}
         {!isLoading && !error && (
           <>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div key={product.id}>{product.name}</div>
             ))}
           </>
