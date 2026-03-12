@@ -110,7 +110,12 @@ function App() {
         itemCount={cartItemCount}
         onClick={() => setIsCartOpen(true)}
       />
-      <CartDrawer />
+      <CartDrawer
+        cart={cart}
+        isOpen={isCartOpen}
+        cartItemCount={cartItemCount}
+        onClose={() => setIsCartOpen(false)}
+      />
     </div>
   );
 }
