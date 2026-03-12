@@ -35,7 +35,13 @@ export const ProductSection = ({
   return (
     <div className="product-section">
       <div className="product-section__filters">
-        <FilterBar />
+        <FilterBar
+          options={filterOptions}
+          selectedFilter={selectedFilter}
+          onChange={(option) => {
+            setSelectedFilter(option);
+          }}
+        />
       </div>
 
       <div className="product-section__list">

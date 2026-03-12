@@ -1,0 +1,13 @@
+.product-section {
+  width: 100%;
+}
+
+.product-section__filters {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.product-section__list {
+  margin-top: 8px;
+}
