@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import type { CartItem } from "./types/cart";
+import type { Product } from "./types/product";
+
+import "./App.css";
+
+const PRODUCTS_URL =
+  "https://s3.us-east-1.amazonaws.com/assets.spotandtango/products.json";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const resp = await fetch(PRODUCTS_URL);
+
+        if (!resp.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data: Product[] = await resp.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Something went wrong");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>
+      <div>Header</div>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        Products
+        {isLoading && <>Loading...</>}
+        {!isLoading && error && <>Error: {error}</>}
+        {!isLoading && !error && (
+          <>
+            {products.map((product) => (
+              <div key={product.id}>{product.name}</div>
+            ))}
+          </>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <div>Cart</div>
+      <div>Cart Button</div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
