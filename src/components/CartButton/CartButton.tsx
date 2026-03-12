@@ -6,7 +6,7 @@ export interface CartButtonProps {
 }
 
 export const CartButton = ({ itemCount, onClick }: CartButtonProps) => {
-  const badgeLabel = itemCount > 99 ? "99+" : itemCount.toString();
+  const badgeLabel = itemCount > 999 ? "999+" : itemCount.toString();
 
   return (
     <button className="cart-button" type="button" onClick={onClick}>
