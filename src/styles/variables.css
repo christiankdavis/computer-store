@@ -2,6 +2,7 @@
   --bg: #eef4fe;
   --surface: #f8fbff;
   --border: #d3e0f6;
+  --shadow: #00000066;
   --text-primary: #121212;
   --text-secondary: #6e7581;
 }
@@ -9,6 +10,7 @@
   --bg: #0d1728;
   --surface: #132b44;
   --border: #1f3c59;
+  --shadow: #00000080;
   --text-primary: #ffffff;
   --text-secondary: #a0aab4;
 }

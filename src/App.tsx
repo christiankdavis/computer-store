@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import { CartButton } from "./components/CartButton/CartButton";
+import { CartDrawer } from "./components/CartDrawer/CartDrawer";
+import { Header } from "./components/Header/Header";
+import { ProductSection } from "./components/ProductSection/ProductSection";
+
 import type { Cart } from "./types/cart";
 import type { Product } from "./types/product";
 
@@ -6,21 +11,15 @@ import "./App.css";
 
 const PRODUCTS_URL =
   "https://s3.us-east-1.amazonaws.com/assets.spotandtango/products.json";
-const ALL_FILTER = "All";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [selectedFilter, setSelectedFilter] = useState(ALL_FILTER);
   const [cart, setCart] = useState<Cart>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const filteredProducts =
-    selectedFilter === ALL_FILTER
-      ? products
-      : products.filter((product) => product.group === selectedFilter);
   const cartItemCount = cart.reduce((accumulator, cartItem) => {
     return accumulator + cartItem.quantity;
   }, 0);
@@ -50,24 +49,13 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div>Header</div>
-      <div>
-        Products
-        {isLoading && <>Loading...</>}
-        {!isLoading && error && <>Error: {error}</>}
-        {!isLoading && !error && (
-          <>
-            {filteredProducts.map((product) => (
-              <div key={product.id}>{product.name}</div>
-            ))}
-          </>
-        )}
-      </div>
+    <div className="app">
+      <Header />
+      <ProductSection products={products} isLoading={isLoading} error={error} />
 
-      <div>Cart</div>
-      <div>Cart Button</div>
-    </>
+      <CartDrawer />
+      <CartButton />
+    </div>
   );
 }
 
