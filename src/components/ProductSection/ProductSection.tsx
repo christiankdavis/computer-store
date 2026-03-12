@@ -9,6 +9,7 @@ export interface ProductSectionProps {
   products: Product[];
   isLoading: boolean;
   error: string | null;
+  onRetry: () => void;
   addToCart: (product: Product) => void;
   incrementQuantity: (productId: string) => void;
   decrementQuantity: (productId: string) => void;
@@ -21,6 +22,7 @@ export const ProductSection = ({
   products,
   isLoading,
   error,
+  onRetry,
   addToCart,
   incrementQuantity,
   decrementQuantity,
@@ -55,7 +57,20 @@ export const ProductSection = ({
       <div className="product-section__list">
         {isLoading && <div>Loading...</div>}
 
-        {!isLoading && error && <div>Error: {error}</div>}
+        {!isLoading && error && (
+          <div className="product-section__status">
+            <div className="product-section__error-message">
+              {error}. Please try refreshing or loading again.
+            </div>
+            <button
+              type="button"
+              className="product-section__retry-button"
+              onClick={onRetry}
+            >
+              Retry loading products
+            </button>
+          </div>
+        )}
 
         {!isLoading && !error && (
           <ProductList

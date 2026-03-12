@@ -69,28 +69,28 @@ function App() {
     return cartItem ? cartItem.quantity : 0;
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
+  const loadProducts = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        const resp = await fetch(PRODUCTS_URL);
+      const resp = await fetch(PRODUCTS_URL);
 
-        if (!resp.ok) {
-          throw new Error("Failed to fetch products");
-        }
-
-        const data: Product[] = await resp.json();
-        setProducts(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Something went wrong");
-      } finally {
-        setIsLoading(false);
+      if (!resp.ok) {
+        throw new Error("Failed to fetch products");
       }
-    };
 
-    fetchProducts();
+      const data: Product[] = await resp.json();
+      setProducts(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadProducts();
   }, []);
 
   return (
@@ -100,6 +100,7 @@ function App() {
         products={products}
         isLoading={isLoading}
         error={error}
+        onRetry={loadProducts}
         addToCart={addToCart}
         incrementQuantity={incrementQuantity}
         decrementQuantity={decrementQuantity}

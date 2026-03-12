@@ -11,3 +11,30 @@
 .product-section__list {
   margin-top: 8px;
 }
+
+.product-section__status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 16px;
+  color: var(--text-secondary);
+}
+
+.product-section__error-message {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.product-section__retry-button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.product-section__retry-button:hover {
+  background: var(--bg);
+}

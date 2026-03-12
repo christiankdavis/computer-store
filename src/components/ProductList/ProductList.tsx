@@ -18,6 +18,10 @@ export const ProductList = ({
   decrementQuantity,
   getProductQuantity,
 }: ProductListProps) => {
+  if (products.length === 0) {
+    return <div className="product-list__empty">No products found.</div>;
+  }
+
   return (
     <div className="product-list">
       {products.map((product) => (
