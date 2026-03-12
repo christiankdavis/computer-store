@@ -1,3 +1,4 @@
+import { CartItem } from "../CartItem/CartItem";
 import type { Cart } from "../../types/cart";
 
 import "./CartDrawer.css";
@@ -7,6 +8,8 @@ export interface CartDrawerProps {
   isOpen: boolean;
   cartItemCount: number;
   onClose: () => void;
+  incrementQuantity: (productId: string) => void;
+  decrementQuantity: (productId: string) => void;
 }
 
 export const CartDrawer = ({
@@ -14,6 +17,8 @@ export const CartDrawer = ({
   isOpen,
   cartItemCount,
   onClose,
+  incrementQuantity,
+  decrementQuantity,
 }: CartDrawerProps) => {
   const cartTotal = cart.reduce((accumulator, cartItem) => {
     return accumulator + cartItem.product.price * cartItem.quantity;
@@ -41,7 +46,17 @@ export const CartDrawer = ({
         </div>
 
         <div className="cart-drawer__content">
-          <div className="cart-drawer__placeholder">Your cart is empty</div>
+          {cart.length === 0 ? (
+            <div className="cart-drawer__placeholder">Your cart is empty</div>
+          ) : (
+            cart.map((cartItem) => (
+              <CartItem
+                cartItem={cartItem}
+                onIncrement={() => incrementQuantity(cartItem.product.id)}
+                onDecrement={() => decrementQuantity(cartItem.product.id)}
+              />
+            ))
+          )}
         </div>
 
         <div className="cart-drawer__footer">

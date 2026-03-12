@@ -115,6 +115,8 @@ function App() {
         isOpen={isCartOpen}
         cartItemCount={cartItemCount}
         onClose={() => setIsCartOpen(false)}
+        incrementQuantity={incrementQuantity}
+        decrementQuantity={decrementQuantity}
       />
     </div>
   );
