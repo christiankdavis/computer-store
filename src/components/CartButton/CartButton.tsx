@@ -1,7 +1,20 @@
 import "./CartButton.css";
 
-export interface CartButtonProps {}
+export interface CartButtonProps {
+  itemCount: number;
+  onClick: () => void;
+}
 
-export const CartButton = (props: CartButtonProps) => {
-  return <div className="cart-button">Cart Button</div>;
+export const CartButton = ({ itemCount, onClick }: CartButtonProps) => {
+  const badgeLabel = itemCount > 99 ? "99+" : itemCount.toString();
+
+  return (
+    <button className="cart-button" type="button" onClick={onClick}>
+      <span className="cart-button__label">Cart</span>
+
+      {itemCount > 0 && (
+        <span className="cart-button__badge">{badgeLabel}</span>
+      )}
+    </button>
+  );
 };

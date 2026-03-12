@@ -5,6 +5,7 @@
   --shadow: #00000066;
   --text-primary: #121212;
   --text-secondary: #6e7581;
+  --alert-red: #e5484d;
 }
 :root[data-theme="dark"] {
   --bg: #0d1728;
@@ -13,4 +14,5 @@
   --shadow: #00000080;
   --text-primary: #ffffff;
   --text-secondary: #a0aab4;
+  --alert-red: #ff6369;
 }

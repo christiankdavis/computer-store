@@ -106,8 +106,11 @@ function App() {
         getProductQuantity={getProductQuantity}
       />
 
+      <CartButton
+        itemCount={cartItemCount}
+        onClick={() => setIsCartOpen(true)}
+      />
       <CartDrawer />
-      <CartButton />
     </div>
   );
 }
