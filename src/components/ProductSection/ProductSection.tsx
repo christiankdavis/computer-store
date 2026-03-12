@@ -9,6 +9,10 @@ export interface ProductSectionProps {
   products: Product[];
   isLoading: boolean;
   error: string | null;
+  addToCart: (product: Product) => void;
+  incrementQuantity: (productId: string) => void;
+  decrementQuantity: (productId: string) => void;
+  getProductQuantity: (productId: string) => number;
 }
 
 const ALL_FILTER = "All";
@@ -17,6 +21,10 @@ export const ProductSection = ({
   products,
   isLoading,
   error,
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+  getProductQuantity,
 }: ProductSectionProps) => {
   const [selectedFilter, setSelectedFilter] = useState(ALL_FILTER);
 
@@ -49,7 +57,15 @@ export const ProductSection = ({
 
         {!isLoading && error && <div>Error: {error}</div>}
 
-        {!isLoading && !error && <ProductList products={filteredProducts} />}
+        {!isLoading && !error && (
+          <ProductList
+            products={filteredProducts}
+            addToCart={addToCart}
+            incrementQuantity={incrementQuantity}
+            decrementQuantity={decrementQuantity}
+            getProductQuantity={getProductQuantity}
+          />
+        )}
       </div>
     </div>
   );

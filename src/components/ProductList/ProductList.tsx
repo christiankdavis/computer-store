@@ -5,13 +5,30 @@ import "./ProductList.css";
 
 export interface ProductListProps {
   products: Product[];
+  addToCart: (product: Product) => void;
+  incrementQuantity: (productId: string) => void;
+  decrementQuantity: (productId: string) => void;
+  getProductQuantity: (productId: string) => number;
 }
 
-export const ProductList = ({ products }: ProductListProps) => {
+export const ProductList = ({
+  products,
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+  getProductQuantity,
+}: ProductListProps) => {
   return (
     <div className="product-list">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard
+          key={product.id}
+          product={product}
+          addToCart={addToCart}
+          incrementQuantity={incrementQuantity}
+          decrementQuantity={decrementQuantity}
+          getProductQuantity={getProductQuantity}
+        />
       ))}
     </div>
   );

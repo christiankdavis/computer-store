@@ -96,7 +96,15 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <ProductSection products={products} isLoading={isLoading} error={error} />
+      <ProductSection
+        products={products}
+        isLoading={isLoading}
+        error={error}
+        addToCart={addToCart}
+        incrementQuantity={incrementQuantity}
+        decrementQuantity={decrementQuantity}
+        getProductQuantity={getProductQuantity}
+      />
 
       <CartDrawer />
       <CartButton />
