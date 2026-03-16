@@ -38,3 +38,8 @@
   color: var(--bg);
   border-color: var(--text-primary);
 }
+
+.filter-bar__option--selected:hover {
+  color: var(--border);
+  transform: translateY(-1px);
+}

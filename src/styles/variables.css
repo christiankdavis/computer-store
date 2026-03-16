@@ -1,18 +1,19 @@
 :root[data-theme="light"] {
-  --bg: #eef4fe;
-  --surface: #f8fbff;
-  --border: #d3e0f6;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
   --shadow: #00000066;
-  --text-primary: #121212;
-  --text-secondary: #6e7581;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
   --alert-red: #e5484d;
 }
+
 :root[data-theme="dark"] {
-  --bg: #0d1728;
-  --surface: #132b44;
-  --border: #1f3c59;
+  --bg: #0b0f17;
+  --surface: #111827;
+  --border: #1f2937;
   --shadow: #00000080;
-  --text-primary: #ffffff;
-  --text-secondary: #a0aab4;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
   --alert-red: #ff6369;
 }
