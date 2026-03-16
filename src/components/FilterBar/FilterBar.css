@@ -40,6 +40,6 @@
 }
 
 .filter-bar__option--selected:hover {
-  color: var(--border);
+  color: var(--bg);
   transform: translateY(-1px);
 }
